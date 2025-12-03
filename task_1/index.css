@@ -135,6 +135,9 @@ form:hover {
   border: none;
   border-radius: 5px;
 }
+.modal-close-btn:hover {
+  cursor: pointer;
+}
 .modal.active {
   transition: all 0.3s;
   display: flex;
