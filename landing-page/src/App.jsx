@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Components/Header";
-import Hero from "./Components/Hero";
-import About from "./Components/About";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
+
+import { motion } from "framer-motion";
+
 import {
   FaFacebook,
   FaInstagram,
@@ -51,7 +49,7 @@ const App = () => {
     },
   ];
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-x-hidden">
       <header
         className={`p-6 fixed w-full top-0 z-50 transition-all duration-300 ${
           showHeader ? "bg-white shadow-md" : "bg-transparent"
@@ -114,7 +112,12 @@ const App = () => {
         <section>
           <div className="w-full max-w-6xl mx-auto flex justify-between items-center  flex-col-reverse md:flex-row h-auto md:h-[60vh] p-8 md:p-5 lg:p-0 ">
             {/* left */}
-            <div className="flex flex-col gap-4 text-center md:text-left">
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col gap-4 text-center md:text-left overflow-x-hidden"
+            >
               {/* title */}
 
               <h1 className="text-2xl md:text-5xl font-semibold">Vextro Bag</h1>
@@ -129,20 +132,30 @@ const App = () => {
                   Learn more
                 </button>
               </div>
-            </div>
+            </motion.div>
             {/* right */}
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden ">
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-64 h-64 md:w-80 md:h-80 rounded-full  overflow-x-hidden "
+            >
               <img
                 src="/hero-image.jpg"
                 alt="hero-image"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           </div>
         </section>
         {/* about */}
         <section id="about">
-          <div className="w-full max-w-6xl mx-auto">
+          <motion.div
+            className="w-full max-w-6xl mx-auto"
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
             <div className="flex-1 space-y-6 text-center md:text-left">
               <h2 className=" font-semibold text-lg uppercase">About Vextro</h2>
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -179,7 +192,7 @@ const App = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
         {/* product */}
         <section id="product">
@@ -194,9 +207,12 @@ const App = () => {
             </div>
             {/* producrts */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2  place-items-center md:place-items-start">
-              {products.map((product) => (
-                <div
+              {products.map((product, index) => (
+                <motion.div
                   key={product.id}
+                  initial={{ y: 50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
                   className=" w-[300px] h-auto md:w-[350px] md:h-[400px]  border-0 shadow-md hover:shadow-lg  group relative rounded-md overflow-auto md:overflow-hidden    "
                 >
                   {/* image */}
@@ -217,7 +233,7 @@ const App = () => {
                       Buy Now
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -227,7 +243,12 @@ const App = () => {
           <div className="w-full max-w-6xl mx-auto  flex flex-col md:flex-row mt-10 h-auto md:h-[40vh] p-5">
             {/* left section */}
 
-            <div className="w-full md:w-1/2 flex flex-col gap-2">
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-full md:w-1/2 flex flex-col gap-2 overflow-x-hidden"
+            >
               <h1 className="text-2xl font-semibold">Get In Touch</h1>
               <p>
                 {" "}
@@ -239,10 +260,15 @@ const App = () => {
                 <FaInstagram size={25} />
                 <FaTwitter size={25} />
               </div>
-            </div>
+            </motion.div>
 
             {/* right section */}
-            <div className="w-full md:w-1/2">
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-full md:w-1/2 "
+            >
               <form action="" className="flex flex-col w-full gap-4">
                 <div className="flex flex-col gap-2 ">
                   <label htmlFor="name">Name</label>
@@ -269,7 +295,7 @@ const App = () => {
                   </button>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </section>
         {/* footer */}
