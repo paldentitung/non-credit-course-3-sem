@@ -110,13 +110,13 @@ const App = () => {
       <div className="pt-24">
         {/* hero image */}
         <section>
-          <div className="w-full max-w-6xl mx-auto flex justify-between items-center  flex-col-reverse md:flex-row h-auto md:h-[60vh] p-8 md:p-5 lg:p-0 ">
+          <div className="w-full max-w-6xl mx-auto flex justify-between items-center  flex-col-reverse md:flex-row h-auto md:h-[60vh] p-8 md:p-5 lg:p-0  gap-4">
             {/* left */}
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="flex flex-col gap-4 text-center md:text-left overflow-x-hidden"
+              className="flex flex-col gap-4 text-center md:text-left overflow-x-hidden "
             >
               {/* title */}
 
@@ -151,7 +151,7 @@ const App = () => {
         {/* about */}
         <section id="about">
           <motion.div
-            className="w-full max-w-6xl mx-auto"
+            className="w-full max-w-6xl mx-auto p-3 md:p-0"
             initial={{ y: 40, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -197,7 +197,7 @@ const App = () => {
         {/* product */}
         <section id="product">
           <div className="w-full max-w-6xl mx-auto  mt-10 flex flex-col gap-10 p-5">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2  text-center md:text-left">
               <h1 className="text-2xl font-bold">Our Products</h1>
               <span className="text-[18px] ">Choose Your Perfect Bag</span>
               <p className="text-gray-600">
@@ -240,7 +240,7 @@ const App = () => {
         </section>
         {/* contact */}
         <section id="contact">
-          <div className="w-full max-w-6xl mx-auto  flex flex-col md:flex-row mt-10 h-auto md:h-[40vh] p-5">
+          <div className="w-full max-w-6xl mx-auto  flex flex-col md:flex-row mt-10 h-auto md:h-[40vh] p-5 gap-6">
             {/* left section */}
 
             <motion.div
