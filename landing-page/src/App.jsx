@@ -13,6 +13,9 @@ import {
 const App = () => {
   const [showHeader, setShowHeader] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [showValidMessage, setShowValidMessage] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -24,6 +27,19 @@ const App = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !message) {
+      alert("enter a valid name");
+      return;
+    }
+    setShowValidMessage(true);
+    setName("");
+    setMessage("");
+    setTimeout(() => {
+      setShowValidMessage(false);
+    }, 3000);
+  };
 
   const products = [
     {
@@ -126,7 +142,7 @@ const App = () => {
               </p>
               <div className="flex gap-2 justify-center  md:justify-start">
                 <button className="px-6 py-2 border transition-all duration-200 shadow-md hover:bg-black hover:text-white hover:border hover:cursor-pointer">
-                  Buy Now
+                  <a href="#product">Buy Now</a>
                 </button>
                 <button className="px-6 py-2 border transition-all duration-200 shadow-md hover:bg-black hover:text-white hover:border hover:cursor-pointer ">
                   Learn more
@@ -138,12 +154,12 @@ const App = () => {
               initial={{ x: 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="w-64 h-64 md:w-80 md:h-80 rounded-full  overflow-x-hidden "
+              className="w-64 h-64 md:w-96 md:h-96 rounded-full  overflow-hidden "
             >
               <img
                 src="/hero-image.jpg"
                 alt="hero-image"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-all duration-200 hover:scale-105"
               />
             </motion.div>
           </div>
@@ -196,7 +212,7 @@ const App = () => {
         </section>
         {/* product */}
         <section id="product">
-          <div className="w-full max-w-6xl mx-auto  mt-10 flex flex-col gap-10 p-5">
+          <div className="w-full max-w-6xl mx-auto  mt-10 flex flex-col gap-10 p-5 h-auto md:h-[80vh] pt-24">
             <div className="flex flex-col gap-2  text-center md:text-left">
               <h1 className="text-2xl font-bold">Our Products</h1>
               <span className="text-[18px] ">Choose Your Perfect Bag</span>
@@ -229,7 +245,7 @@ const App = () => {
                     <h1 className="text-2xl py-2 font-bold">{product.name}</h1>
                     <span className="text-[16px]">{product.description}</span>
                     <span>Price:{product.price}</span>
-                    <button className="px-6 py-2 border transition-all duration-200 shadow-md hover:bg-black hover:text-white hover:border hover:cursor-pointer">
+                    <button className="px-6 py-2 border transition-all duration-200 shadow-md hover:text-black hover:bg-white hover:border hover:cursor-pointer">
                       Buy Now
                     </button>
                   </div>
@@ -240,7 +256,7 @@ const App = () => {
         </section>
         {/* contact */}
         <section id="contact">
-          <div className="w-full max-w-6xl mx-auto  flex flex-col md:flex-row mt-10 h-auto md:h-[40vh] p-5 gap-6">
+          <div className="w-full max-w-6xl mx-auto  flex flex-col md:flex-row mt-10 h-auto md:h-[50vh] p-5 pt-20 gap-6">
             {/* left section */}
 
             <motion.div
@@ -249,7 +265,7 @@ const App = () => {
               transition={{ duration: 0.8 }}
               className="w-full md:w-1/2 flex flex-col gap-2 overflow-x-hidden"
             >
-              <h1 className="text-2xl font-semibold">Get In Touch</h1>
+              <h1 className="text-3xl font-semibold">Get In Touch</h1>
               <p>
                 {" "}
                 Have questions or want to know more about our bags? Drop us a
@@ -269,13 +285,20 @@ const App = () => {
               transition={{ duration: 0.8 }}
               className="w-full md:w-1/2 "
             >
-              <form action="" className="flex flex-col w-full gap-4">
+              <form
+                action=""
+                className="flex flex-col w-full gap-6"
+                onSubmit={handleSubmit}
+              >
                 <div className="flex flex-col gap-2 ">
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor="name" className="text-[18px]">
+                    Name
+                  </label>
                   <input
                     type="text"
                     name="name"
-                    className="ring p-3 outline-0 focus:ring focus:ring-blue-500"
+                    onChange={(e) => setName(e.target.value)}
+                    className="ring p-4 outline-0 focus:ring focus:ring-blue-500"
                   />
                 </div>
                 <div className="flex flex-col gap-2 ">
@@ -283,7 +306,8 @@ const App = () => {
                   <input
                     type="text"
                     name="message"
-                    className="ring p-3 outline-0 focus:ring focus:ring-blue-500"
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="ring p-4 outline-0 focus:ring focus:ring-blue-500"
                   />
                 </div>
                 <div className="flex flex-col gap-2 ">
@@ -294,6 +318,9 @@ const App = () => {
                     Send message
                   </button>
                 </div>
+                {showValidMessage && (
+                  <div className="text-[18px] text-green-500">message sent</div>
+                )}
               </form>
             </motion.div>
           </div>
