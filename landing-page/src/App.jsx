@@ -16,6 +16,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [showValidMessage, setShowValidMessage] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -64,6 +65,7 @@ const App = () => {
       image: "/bag-2.jpg",
     },
   ];
+
   return (
     <div className="bg-white overflow-x-hidden">
       <header
@@ -244,7 +246,7 @@ const App = () => {
                   <div className="flex flex-col gap-1  bottom-2 left-3 text-black md:text-white transition-all duration-300  md:group-hover:absolute p-4">
                     <h1 className="text-2xl py-2 font-bold">{product.name}</h1>
                     <span className="text-[16px]">{product.description}</span>
-                    <span>Price:{product.price}</span>
+                    <span className="font-semibold">Price:{product.price}</span>
                     <button className="px-6 py-2 border transition-all duration-200 shadow-md hover:text-black hover:bg-white hover:border hover:cursor-pointer">
                       Buy Now
                     </button>
@@ -327,7 +329,7 @@ const App = () => {
         </section>
         {/* footer */}
         <footer>
-          <div className="w-full max-w-6xl mx-auto mt-10 p-5 md:p-0 ">
+          <div className="w-full max-w-6xl mx-auto mt-10 p-6 md:p-0 ">
             <div className="flex flex-col md:flex-row justify-between ">
               <div className="flex flex-col gap-2">
                 <h1 className="text-2xl font-bold ">Vextro</h1>

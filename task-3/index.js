@@ -11,6 +11,8 @@ console.log(modal);
 //add task logic
 addTaskBtn.addEventListener("click", () => {
   let li = document.createElement("li");
+  let checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
   let deleteBtn = document.createElement("button");
 
   let nodeText = document.createTextNode(userInput.value);
@@ -22,9 +24,22 @@ addTaskBtn.addEventListener("click", () => {
   userInput.value = "";
   deleteBtn.innerHTML = "Delete";
 
+  li.appendChild(checkBox);
   li.appendChild(nodeText);
   li.appendChild(deleteBtn);
   todolist.appendChild(li);
+
+  checkBox.addEventListener("change", () => {
+    if (checkBox.checked) {
+      li.style.textDecoration = "line-through";
+      li.style.backgroundColor = "#dee0e3";
+      deleteBtn.disabled = true;
+    } else {
+      li.style.textDecoration = "none";
+      li.style.backgroundColor = "white";
+      deleteBtn.disabled = false;
+    }
+  });
 
   deleteBtn.addEventListener("click", () => {
     modal.classList.add("active");
